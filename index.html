@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Градієнти</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        background-color: #0e0b44;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /*grid робить таку собі уявну сітку, по якій потім розміщуются блоки*/
+
+      .block {
+        min-height: 180px;
+        border-radius: 4px;
+      }
+
+      /*block робить ці блоки певного розміру, а border робить скругленні кути */
+
+      .block:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+      }
+
+      /*категорично не обовьязкова штука, при наведенні курсора на блок він збільшується, за те виглядяє приємно */
+
+      .one { background: linear-gradient(to right, #ff512f, #dd2476); }
+      .two { background: linear-gradient(135deg, #00e5ff 0%, #005bea 100%); }
+      .three { background: linear-gradient(to bottom, #ff0000 0%, #ff9900 50%, #ffff00 100%); }
+      .four { background: linear-gradient(45deg, #11998e, #38ef7d); }
+      .five { background: linear-gradient(to left, #654ea3, #eaafc8); }
+      .six { background: radial-gradient(circle, #ffffff 0%, #ff0000 35%, #660000 100%); }
+      .seven { background: radial-gradient(circle at top left, #00ff00 0%, #00a000 35%, #001f00 100%); }
+      .eight { background: radial-gradient(ellipse, #00c6ff, #0072ff); }
+      .nine { background: conic-gradient(red, blue); }
+      .ten { background: conic-gradient(at 0% 30%, red 10%, yellow 30%, #1e90ff 50%); }
+      .eleven { background: conic-gradient(#ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000); }
+      .twelve { background: conic-gradient(from 90deg, #0000ff 0deg, #00ffff 120deg, #00ff00 240deg, #0000ff 360deg); }
+      .thirteen { background: conic-gradient(at 30% 30%, #2193b0, #6dd5ed, #2193b0); }
+      .fourteen { background: conic-gradient(from 180deg at 70% 60%, #f953c6, #b91d73, #f953c6); }
+      .fifteen { background: repeating-linear-gradient(45deg, #222222 0 10px, #555555 10px 20px); }
+      .sixteen { background: repeating-linear-gradient(to right, #ff0000 0 15px, #ffff00 15px 30px); }
+      .seventeen { background: repeating-linear-gradient(to bottom, #0000ff 0 12px, #00ffff 12px 24px); }
+      .eighteen { background: repeating-radial-gradient(circle, #2c3e50 0 10px, #3498db 10px 20px); }
+      .nineteen { background: repeating-radial-gradient(ellipse at center, #ffff00 0 12px, #ff0000 12px 24px); }
+      .twenty { background: repeating-conic-gradient(#000000 0 15deg, #ffffff 15deg 30deg); }
+      .twentyone {
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0 12%, transparent 12% 48%, rgba(255, 190, 80, 0.3) 48% 62%, transparent 62%),
+          conic-gradient(from 210deg at 25% 30%, #ffb347, #ff416c, #8e2de2, #ffb347),
+          radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.4), transparent 30%),
+          linear-gradient(135deg, #ff512f, #dd2476);
+      }
+      .twentytwo {
+        background:
+          linear-gradient(60deg, transparent 0 30%, rgba(255, 255, 255, 0.3) 30% 38%, transparent 38%),
+          linear-gradient(145deg, rgba(0, 255, 255, 0.45) 0 25%, transparent 25% 65%, rgba(0, 80, 255, 0.35) 65%),
+          conic-gradient(from 40deg at 70% 35%, #00f5ff, #0066ff, #183cff, #00f5ff),
+          linear-gradient(135deg, #00e5ff, #005bea);
+      }
+      .twentythree {
+         background:
+    repeating-linear-gradient(
+      190deg,
+      rgba(255, 0, 0, 0.5) 40px,
+      rgba(255, 153, 0, 0.5) 80px,
+      rgba(255, 255, 0, 0.5) 120px,
+      rgba(0, 255, 0, 0.5) 160px,
+      rgba(0, 0, 255, 0.5) 200px,
+      rgba(75, 0, 130, 0.5) 240px,
+      rgba(238, 130, 238, 0.5) 280px,
+      rgba(255, 0, 0, 0.5) 300px
+    ),
+    repeating-linear-gradient(
+      -190deg,
+      rgba(255, 0, 0, 0.5) 30px,
+      rgba(255, 153, 0, 0.5) 60px,
+      rgba(255, 255, 0, 0.5) 90px,
+      rgba(0, 255, 0, 0.5) 120px,
+      rgba(0, 0, 255, 0.5) 150px,
+      rgba(75, 0, 130, 0.5) 180px,
+      rgba(238, 130, 238, 0.5) 210px,
+      rgba(255, 0, 0, 0.5) 230px
+    ),
+    repeating-linear-gradient(
+      23deg,
+      red 50px,
+      orange 100px,
+      yellow 150px,
+      green 200px,
+      blue 250px,
+      indigo 300px,
+      violet 350px,
+      red 370px
+    );
+
+    /*так я вкрав цей код з якогось сайту з градієнтами*/
+
+      }
+      .twentyfour {
+        background:
+          linear-gradient(35deg, transparent 0 28%, rgba(255, 255, 255, 0.25) 28% 36%, transparent 36% 68%, rgba(0, 70, 60, 0.3) 68%),
+          linear-gradient(145deg, rgba(56, 239, 125, 0.55) 0 30%, transparent 30% 58%, rgba(17, 153, 142, 0.55) 58%),
+          radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.45), transparent 25%),
+          linear-gradient(45deg, #11998e, #38ef7d);
+      }
+      .twentyfive {
+        background: repeating-linear-gradient(
+    -45deg,
+    red,
+    red 5px,
+    blue 5px,
+    blue 10px
+  );
+      }
+      .twentysix {  
+         background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 127, 0, 0.25) 50px,
+      rgba(255, 127, 0, 0.25) 56px,
+      transparent 56px,
+      transparent 63px,
+      rgba(255, 127, 0, 0.25) 63px,
+      rgba(255, 127, 0, 0.25) 69px,
+      transparent 69px,
+      transparent 116px,
+      rgba(255, 206, 0, 0.25) 116px,
+      rgba(255, 206, 0, 0.25) 166px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 127, 0, 0.25) 50px,
+      rgba(255, 127, 0, 0.25) 56px,
+      transparent 56px,
+      transparent 63px,
+      rgba(255, 127, 0, 0.25) 63px,
+      rgba(255, 127, 0, 0.25) 69px,
+      transparent 69px,
+      transparent 116px,
+      rgba(255, 206, 0, 0.25) 116px,
+      rgba(255, 206, 0, 0.25) 166px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 5px,
+      rgba(143, 77, 63, 0.25) 5px,
+      rgba(143, 77, 63, 0.25) 10px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      rgba(143, 77, 63, 0.25) 5px,
+      rgba(143, 77, 63, 0.25) 10px
+    );
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 50px,
+      rgba(255, 127, 0, 0.25) 50px 56px,
+      transparent 56px 63px,
+      rgba(255, 127, 0, 0.25) 63px 69px,
+      transparent 69px 116px,
+      rgba(255, 206, 0, 0.25) 116px 166px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 50px,
+      rgba(255, 127, 0, 0.25) 50px 56px,
+      transparent 56px 63px,
+      rgba(255, 127, 0, 0.25) 63px 69px,
+      transparent 69px 116px,
+      rgba(255, 206, 0, 0.25) 116px 166px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 5px,
+      rgba(143, 77, 63, 0.25) 5px 10px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 5px,
+      rgba(143, 77, 63, 0.25) 5px 10px
+    );
+      }
+      .twentyseven {
+        background:
+    repeating-radial-gradient(
+        ellipse at 80% 50%,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5) 15px,
+        rgba(255, 255, 255, 0.5) 15px,
+        rgba(255, 255, 255, 0.5) 30px
+      )
+      top left no-repeat,
+    repeating-radial-gradient(
+        ellipse at 20% 50%,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5) 10px,
+        rgba(255, 255, 255, 0.5) 10px,
+        rgba(255, 255, 255, 0.5) 20px
+      )
+      top left no-repeat yellow;
+      }
+      .twentyeight {
+         background: radial-gradient(red 10px, yellow 30%, #1e90ff 50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="block one"></div>
+      <div class="block two"></div>
+      <div class="block three"></div>
+      <div class="block four"></div>
+      <div class="block five"></div>
+      <div class="block six"></div>
+      <div class="block seven"></div>
+      <div class="block eight"></div>
+      <div class="block nine"></div>
+      <div class="block ten"></div>
+      <div class="block eleven"></div>
+      <div class="block twelve"></div>
+      <div class="block thirteen"></div>
+      <div class="block fourteen"></div>
+      <div class="block fifteen"></div>
+      <div class="block sixteen"></div>
+      <div class="block seventeen"></div>
+      <div class="block eighteen"></div>
+      <div class="block nineteen"></div>
+      <div class="block twenty"></div>
+      <div class="block twentyone"></div>
+      <div class="block twentytwo"></div>
+      <div class="block twentythree"></div>
+      <div class="block twentyfour"></div>
+      <div class="block twentyfive"></div>
+      <div class="block twentysix"></div>
+      <div class="block twentyseven"></div>
+      <div class="block twentyeight"></div>
+    </div>
+  </body>
+</html>
